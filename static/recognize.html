@@ -1,0 +1,173 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Gazetic.</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<style type="text/css">
+		body { font-family: Helvetica, sans-serif; }
+		h2, h3 { margin-top:0; }
+		form { margin-top: 15px; }
+		form > input { margin-right: 15px; }
+		#my_camera {display: none;}
+	</style>
+</head>
+<body>
+	
+	<div id="my_camera"></div>
+	
+	<!-- First, include the Webcam.js JavaScript Library -->
+	<script type="text/javascript" src="../webcam.min.js"></script>
+	<script type="text/javascript" src="../sdk.js"></script>
+	<!-- Configure a few settings and attach camera -->
+	<script language="JavaScript">
+		Webcam.set({
+			width: 640,
+			height: 480,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+	</script>
+
+
+	<div class="page page1" id="page1">
+		<div class="mainDiv">
+		<img src="logo.png" class="logo"/> 
+		<br />
+		<div class="controls">
+		<div class="amountDiv">
+		<input type="text" placeholder="Event ID" id="eventId" class="amountBox" />
+		</div>
+		<div class="btnDiv">
+		<button type="button" class="btn btn-secondary pay-btn" onClick="take_snapshot(true)">Check In Tickets</button>
+		</div>
+		<div class="clear"></div>
+		</div>
+		</div>
+
+		<div class="container">
+		  <div class="row align-items-start">
+		    <div class="col">
+		      
+		    </div>
+		    <div class="col">
+		    </div>
+		   
+		  </div>
+		  
+		  <div class="row align-items-end">
+		    <div class="col">
+		          
+		    </div>
+		    
+		    <div class="col">
+		        
+		    </div>
+		  </div>
+		</div>
+
+
+	</div>
+
+	<br />
+	<div class="page page2" id="page2">
+		<div class="resultsContainer">
+			<div class="resultsPane">
+				<div id="results">
+					<img src="blank.jpg" class="liveImage" />
+				</div>
+			</div>
+			<div class="resultsWritingPane">
+				<h1>Ticket Information</h1>
+				<br />
+				Name(s)<br />
+				<b id="nameField"></b>
+				<br /><br />
+				Ticket ID(s)<br />
+				<b id="ticketIdField"></b>
+				<br /><br />
+				Event ID
+				<h1 id="amountField"></h1>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="page page3" id="page3">
+		<img src="tick.gif" class="tick" id="tick" />
+	</div>
+	
+	<!-- Code to handle taking the snapshot and displaying it locally -->
+	<script language="JavaScript">
+
+		function imageRecognize(image) {
+			gazeCheckIn(image, "5a7692821803cb37ab018744", document.getElementById("eventId").value, function(data) {
+				newImg = image;
+				if(data.image) {
+					newImg = data.image;
+				}
+
+				document.getElementById('results').innerHTML = '<img class="liveImage" src="'+newImg+'"/>';
+
+
+	    		names = ""
+	    		for(var count = 0; count < data.names.length; count++) {
+	    			if (count > 0) {
+	    				names += ", "
+	    			}
+	    			names += data.names[count]
+	    		}
+	    		document.getElementById("nameField").innerHTML = names
+
+	    		ticketIds = ""
+	    		for(var count = 0; count < data.users.length; count++) {
+	    			if (count > 0) {
+	    				ticketIds += ", "
+	    			}
+	    			ticketIds += data.users[count]['ticketId']
+	    		}
+	    		document.getElementById("ticketIdField").innerHTML = ticketIds
+				
+
+				setTimeout(function() {
+					take_snapshot(false)
+
+	    			document.getElementById("amount").value = "";
+	    			document.getElementById("nameField").innerHTML = "";
+	    			document.getElementById("ticketIdField").innerHTML = "";
+	    			document.getElementById("amountFieldd").innerHTML = "";
+				}, 8000)
+				
+		    }, function(data) {
+		    	if (!data) {
+		    		return
+		    	}
+		    	newImg = image;
+				if(data.image) {
+					newImg = data.image;
+				}
+
+				document.getElementById('results').innerHTML = '<img class="liveImage" src="'+newImg+'"/>';
+			    take_snapshot(false);
+			});
+		}
+		
+		function take_snapshot(animate) {
+			if(animate) {
+				document.getElementById("page1").style.left = "-100%";
+				document.getElementById("page2").style.left = "0";
+				document.getElementById("page3").style.left = "100%";
+			}
+			// take snapshot and get image data
+			Webcam.snap( function(data_uri) {
+				imageRecognize(data_uri);
+			} );
+		}
+	</script>
+	
+</body>
+</html>

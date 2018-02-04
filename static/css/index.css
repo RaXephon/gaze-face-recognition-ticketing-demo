@@ -1,0 +1,157 @@
+body {
+	text-align: center;
+	margin:auto;
+}
+.liveImage {
+	border-radius: 15px;
+}
+.tick {
+	width: 400px;
+	height: auto;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -150px;
+}
+.page {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	margin: 0;
+	transition: left 0.8s;
+
+}
+.page1 {
+	background: white;
+}
+.page2 {
+	background: #F8E71C;
+	left: 100%;
+}
+.page3 {
+	background: #FFFFFF;
+	left: 200%;
+	text-align: left;
+}
+
+.container {
+    display: grid;
+    grid-gap: 20px;
+    background-color: #fff;
+    color: #444;
+    justify-content: center;
+    align-content: end;
+}
+
+.resultsContainer {
+	position: relative;
+	top: 10%;
+	margin-left: -505px;
+	left: 50%;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+
+}
+
+.keypad {
+    grid-column: 1;
+    grid-row: 1;
+}
+.amount_button {
+    grid-column: 1 ;
+    grid-row: 2;
+}
+.gaze_logo {
+    grid-column: 2 ;
+    grid-row: 1 ;
+}
+.pay_button {
+    grid-column: 2;
+    grid-row: 2;
+}
+.amountBox::placeholder {
+	color: #aaa;
+}
+
+.amountBox {
+	width: 350px;
+	height: 80px;
+	background: #ffffff;
+	border: 2px solid #9B9B9B;
+	border-radius: 12px;
+	padding: 8px;
+	text-align: center;
+	font-family: 'Avenir';
+	font-weight: 'light';
+	font-size: 15pt;
+}
+
+.amountDiv {
+	float: left;
+}
+.btnDiv {
+	float:left;
+}
+
+.pay-btn {
+	background: #9b9b9b;
+	border: 0;
+	border-radius: 0;
+	height: 80px;
+	width: 350px;
+	margin-left: 12px;
+	font-size: 15pt;
+	font-family: 'Avenir';
+	font-weight: 'light';
+	color: black;
+}
+
+.clear {
+	clear: both;
+}
+
+.logo {
+	width: 300px;
+	margin-bottom: 20px;
+}
+.mainDiv {
+	text-align: left;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-left: -356px;
+	margin-top: -91px;
+}
+
+.resultsPane {
+	float: left;
+	width: 640px;
+	margin-right: 50px;
+	font-size: 15pt;
+}
+
+.resultsWritingPane {
+	float: left; 
+	width: 320px;
+	font-family: 'Avenir';
+	font-weight: 'light';
+	text-align: left;
+	margin-top: 75px;
+}
+
+.resultsWritingPane h1 {
+	font-size: 45pt !important;
+	font-weight: 300 !important;
+}
+
+
+
