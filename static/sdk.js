@@ -51,17 +51,21 @@ function gazeRegister(image, eventId, ticketId, name, email, callbackSuccess, ca
 	var url = BASE_GAZE_URL + "/register";
 	var params = "eventId=" + encodeURIComponent(eventId) + "&ticketId=" + encodeURIComponent(ticketId) + "&name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&image=" + encodeURIComponent(image) ;
 
+	console.log("1");
+
 	gazeMakeHTTPRequest(url, params, "POST", function(http) {
 		if (http.status != 200) {
 			callbackFailure();
 		}
-
+		console.log("2")
 		data = JSON.parse(http.responseText);
 
 		if (data.success) {
 			callbackSuccess(data);
+			console.log("3");
 		} else {
 			callbackFailure(data);
+			console.log("fuck")
 		}
 
 	})

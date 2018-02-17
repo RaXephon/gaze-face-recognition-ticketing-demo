@@ -61,7 +61,7 @@ a,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: url(./spectre-login.jpg);
+  /*background: url(./spectre-login.jpg);*/
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;

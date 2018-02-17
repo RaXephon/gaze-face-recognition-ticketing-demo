@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
   <title>GazeTic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
@@ -21,96 +21,109 @@
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
   <link rel="stylesheet" href="css/style.css">
 
-  
+
 </head>
 
 <body>
 
-  <script type="text/javascript" src="../sdk.js"></script>
-    <script language="JavaScript">
+  <script type="text/javascript" src="../static/sdk.js"></script>
+  <script language="JavaScript">
     function take_snapshot() {
       // take snapshot and get image data
-      Webcam.snap( function(data_uri) {
+      Webcam.snap(function (data_uri) {          
         registerUser(data_uri);
-      } );
+      });
     }
 
     function registerUser(image) {
-      var params = "eventId=" + encodeURIComponent(document.getElementById('eventId').value) + "&ticketId=" + encodeURIComponent(document.getElementById('ticketId').value) + "&name=" + encodeURIComponent(document.getElementById('name').value) + "&email=" + encodeURIComponent(document.getElementById('email').value) + "&image=" + encodeURIComponent(image) ;
+      var params = "eventId=" + encodeURIComponent(document.getElementById('eventId').value) + "&ticketId=" +
+        encodeURIComponent(document.getElementById('ticketId').value) + "&name=" + encodeURIComponent(document.getElementById(
+          'name').value) + "&email=" + encodeURIComponent(document.getElementById('email').value) + "&image=" +
+        encodeURIComponent(image);
 
-      gazeRegister(image, document.getElementById('eventId').value, document.getElementById('ticketId').value, document.getElementById('name').value, document.getElementById('email').value, function(data) {
+      gazeRegister(image, document.getElementById('eventId').value, document.getElementById('ticketId').value, document
+        .getElementById('name').value, document.getElementById('email').value,
+        function (data) {
           alert("Successfully registered")
-      }, function(data) {
+        },
+        function (data) {
           alert(data.error);
-      })
+        });
+        
+        document.getElementById('results').innerHTML = 
+					'<h2>Here is your image:</h2>' + 
+          '<img src="'+image+'"/>';
     }
-
-
   </script>
 
-  <div id="my_camera"></div>
-  <script language="JavaScript">
-    Webcam.set({
-      width: 640,
-      height: 480,
-      image_format: 'jpeg',
-      jpeg_quality: 90
-    });
-    Webcam.attach( '#my_camera' );
-  </script>
+<div id="my_camera"></div>
+<script language="JavaScript">
+  Webcam.set({
+    width: 640,
+    height: 480,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  Webcam.attach('#my_camera');
+</script>
+  
+  <div id="results">Your captured image will appear here...</div>
 
   <div class="signup__container">
-  <div class="container__child signup__thumbnail">
-    <div class="thumbnail__logo">
-      
-      <h1 class="logo__text">GazeTic New Ticket Addition</h1>
-    </div>
-    <div class="thumbnail__content text-center">
-      <h1 class="heading--primary">Next Gen Ticketing.</h1>
-      <h2 class="heading--secondary">Moving towards <s>Paper</s> <s>App</s> Face recognition based ticketing!</h2>
-    </div>
-    <div class="thumbnail__links">
-      <ul class="list-inline m-b-0 text-center">
-      </ul>
-    </div>
-    <div class="signup__overlay"></div>
-  </div>
-  <div class="container__child signup__form">
-    <form action="#">
-      <div class="form-group">
-        <label for="username">Name</label>
-        <input class="form-control" type="text" name="name" id="name" placeholder="e.g. Motasim Bir Rahman" required />
+    <div class="container__child signup__thumbnail">
+      <div class="thumbnail__logo">
+
+        <h1 class="logo__text">GazeTic New Ticket Addition</h1>
       </div>
-      <div class="form-group">
-        <label for="username">Event ID</label>
-        <input class="form-control" type="text" name="eventId" id="eventId" placeholder="Event ID" required />
+      <div class="thumbnail__content text-center">
+        <h1 class="heading--primary">Next Gen Ticketing.</h1>
+        <h2 class="heading--secondary">Moving towards
+          <s>Paper</s>
+          <s>App</s> Face recognition based ticketing!</h2>
       </div>
-      <div class="form-group">
-        <label for="password">Ticket ID</label>
-        <input class="form-control" type="text" name="ticketId" id="ticketId" placeholder="Ticket ID" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Email</label>
-        <input class="form-control" type="email" name="email" id="email" placeholder="e.g. motasim@gaze.technology" required />
-      </div>
-      <div class="form-group">
-      <label>* Please look at the camera</label>
-      </div>
-      
-      
-      <div class="m-t-lg">
-        <ul class="list-inline">
-          <li>
-            <input class="btn btn--form" type="button" onClick="take_snapshot()" value="Register" />
-          </li>
-          <li>
-           
-          </li>
+      <div class="thumbnail__links">
+        <ul class="list-inline m-b-0 text-center">
         </ul>
       </div>
-    </form>  
+      <div class="signup__overlay"></div>
+    </div>
+    <div class="container__child signup__form">
+      <form action="#">
+        <div class="form-group">
+          <label for="username">Name</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="e.g. Motasim Bir Rahman" required />
+        </div>
+        <div class="form-group">
+          <label for="username">Event ID</label>
+          <input class="form-control" type="text" name="eventId" id="eventId" placeholder="Event ID" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Ticket ID</label>
+          <input class="form-control" type="text" name="ticketId" id="ticketId" placeholder="Ticket ID" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Email</label>
+          <input class="form-control" type="email" name="email" id="email" placeholder="e.g. motasim@gaze.technology" required />
+        </div>
+        <div class="form-group">
+          <label>* Please look at the camera</label>
+        </div>
+
+
+        <div class="m-t-lg">
+          <ul class="list-inline">
+            <li>
+              <input id="snap" class="btn btn--form" type="button" onClick="take_snapshot()" value="Register" />
+              <!-- <button id="snap" class="btn btn--form" onClick="take_snapshot()"><a href="recognize.html">Register</a></button> -->
+            </li>
+            <li>
+
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
 
 </body>
