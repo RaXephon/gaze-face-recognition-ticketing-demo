@@ -36,10 +36,10 @@
     }
 
     function registerUser(image) {
-      var params = "eventId=" + encodeURIComponent(document.getElementById('eventId').value) + "&ticketId=" +
-        encodeURIComponent(document.getElementById('ticketId').value) + "&name=" + encodeURIComponent(document.getElementById(
-          'name').value) + "&email=" + encodeURIComponent(document.getElementById('email').value) + "&image=" +
-        encodeURIComponent(image);
+      // var params = "eventId=" + encodeURIComponent(document.getElementById('eventId').value) + "&ticketId=" +
+      //   encodeURIComponent(document.getElementById('ticketId').value) + "&name=" + encodeURIComponent(document.getElementById(
+      //     'name').value) + "&email=" + encodeURIComponent(document.getElementById('email').value) + "&image=" +
+      //   encodeURIComponent(image);
 
       gazeRegister(image, document.getElementById('eventId').value, document.getElementById('ticketId').value, document
         .getElementById('name').value, document.getElementById('email').value,
@@ -50,9 +50,7 @@
           alert(data.error);
         });
         
-        document.getElementById('results').innerHTML = 
-					'<h2>Here is your image:</h2>' + 
-          '<img src="'+image+'"/>';
+        document.getElementById('results').innerHTML = '<img src="'+image+'"/>';
     }
   </script>
 

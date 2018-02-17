@@ -60,11 +60,11 @@ function gazeRegister(image, eventId, ticketId, name, email, callbackSuccess, ca
 		console.log("2")
 		data = JSON.parse(http.responseText);
 
-		if (data.success) {
-			callbackSuccess(data);
+		if (data.success) {//data
+			callbackSuccess("yay");
 			console.log("3");
-		} else {
-			callbackFailure(data);
+		} else {//data
+			callbackFailure("rip");
 			console.log("fuck")
 		}
 
