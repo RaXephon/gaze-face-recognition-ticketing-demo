@@ -1,4 +1,5 @@
-BASE_GAZE_URL = "http://184.105.3.13:3000"
+BASE_GAZE_URL = "http://192.12.13.8:3000"
+//184.105.3.13
 
 function gazeMakeHTTPRequest(url, params, method, callback) {
 	var http = new XMLHttpRequest();
